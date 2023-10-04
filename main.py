@@ -25,7 +25,18 @@ with open('Empresas Listadas B3 - Novo Mercado.csv', 'r', encoding='utf-8') as a
         pyperclip.copy(empresa)
         pyautogui.hotkey('ctrl', 'v'), sleep(1)
         pyautogui.hotkey('tab'), sleep(1)
-        pyautogui.hotkey('n'), sleep(1)
+        # Seleciona o segmento da B3 para acessar a empresa
+        if linha[6] == 'Novo Mercado':
+            pyautogui.hotkey('n'), sleep(1)
+        if linha[6] == 'Nível 1 de Governança Corporativa':
+            pyautogui.hotkey('n'), sleep(1)
+            pyautogui.hotkey('n'), sleep(1)
+            pyautogui.hotkey('n'), sleep(1)
+        if linha[6] == 'Nível 2 de Governança Corporativa':
+            pyautogui.hotkey('n'), sleep(1)
+            pyautogui.hotkey('n'), sleep(1)
+        if linha[6] == 'Tradicional - Bolsa':
+            pyautogui.hotkey('t'), sleep(1)
         pyautogui.hotkey('tab'), sleep(1)
         pyautogui.hotkey('enter'), sleep(1)
         pyautogui.moveTo(345, 770), sleep(1)
@@ -45,10 +56,11 @@ with open('Empresas Listadas B3 - Novo Mercado.csv', 'r', encoding='utf-8') as a
             pyautogui.hotkey('esc'), sleep(1)
             pyautogui.hotkey('tab'), sleep(1)
             pyautogui.hotkey('enter'), sleep(2)
-            pyautogui.moveTo(1792, 195), sleep(2)
-            pyautogui.click(), sleep(1)
-            pyautogui.moveTo(1792, 161), sleep(2)
+            # Localiza e clica no botão de salvar pdf
+            pdf_button = pyautogui.locateOnScreen('pdf_button.png')
+            pyautogui.moveTo(pdf_button), sleep(1)
             pyautogui.click(), sleep(2)
+            # Localiza e clica no botão de download
             download_button = pyautogui.locateOnScreen('download_button.png')
             pyautogui.moveTo(download_button), sleep(1)
             pyautogui.click(), sleep(150)
